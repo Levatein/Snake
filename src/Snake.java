@@ -1,20 +1,21 @@
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Snake {
 
-	public ArrayList<Point> snake;
+	public static List<Point> snake;
 	
-	public static ArrayList<Point> createSnake() {
-		
-		ArrayList<Point> snake = new ArrayList<Point>();
-		snake.add(new Point(1, 0));
-		snake.add(new Point(0, 0));
-		return snake;
+	public Snake() {
+		snake = Arrays.asList(new Point(1,0), new Point(0,0));
 		}
 	
-	public static void movement(ArrayList<Point> snake, Point direction) {
-		snake.add(0, snake.get(snake.size()-1));
-		snake.set(0, new Point(snake.get(0).x+direction.x, snake.get(0).y+direction.y));
-		snake.remove(snake.size()-1);
+	public static void movement(Snake snake, Point direction) {
+		Snake.snake.add(0, Snake.snake.get(Snake.snake.size()-1));
+		Snake.snake.set(0, new Point(Snake.snake.get(0).x+direction.x, Snake.snake.get(0).y+direction.y));
+		Snake.snake.remove(Snake.snake.size()-1);
     }
+
+	public static Point takeCoordinate(int i) {
+		return snake.get(i);
+	}
 }
