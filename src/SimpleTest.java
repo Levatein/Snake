@@ -1,4 +1,3 @@
-import static org.junit.Assert.assertEquals;
 import org.junit.jupiter.api.Test;
 
 class SimpleTest {
@@ -10,11 +9,8 @@ class SimpleTest {
 		assert(point.y==0);
 		
 		Snake snake = new Snake();
-		assertEquals(snake.getCoordinate(0).x, 1);
-		assertEquals(snake.getCoordinate(0).y, 0);
-		assertEquals(snake.getCoordinate(1).x, 0);
-		assertEquals(snake.getCoordinate(1).y, 0);
-		
+		assert(Point.equal(snake.snake.get(0), new Point(1,0)));
+		assert(Point.equal(snake.snake.get(1), new Point(0,0)));
 	}
 
 }

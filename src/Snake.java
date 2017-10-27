@@ -22,18 +22,19 @@ public class Snake {
 		int x2 = this.snake.get(this.snake.size()-2).x;
 		int y2 = this.snake.get(this.snake.size()-2).y;
 		if (x1==x2) {
-			this.snake.add(new Point(x1, 2*y1-y2));
+			this.snake.add(new Point(x1, 2*y1-y2)); //формула во второй части определяет, вверху или внизу нужно прикрепить новый эллемент змейки
 		}
 		else {
-			this.snake.add(new Point(2*x1-x2, y1));
+			this.snake.add(new Point(2*x1-x2, y1)); //аналогично, слева или справа
 		}
     }
-
-	public Point getCoordinate(int i) {
-		return this.snake.get(i);
-	}
 	
-	public int size() {
-		return this.snake.size();
+	public boolean snakeDie(Point map) {
+		if (this.snake.get(0).x==map.x+1 || this.snake.get(0).y==map.y+1) {return true;}
+		if (this.snake.get(0).x==-1 || this.snake.get(0).y==-1) {return true;}
+		for (int i = 1; i<this.snake.size(); i++) {
+			if (Point.equal(this.snake.get(0), this.snake.get(i))) {return true;}
+		}
+		return false;
 	}
 }

@@ -1,15 +1,18 @@
-import static org.junit.Assert.assertEquals;
 import org.junit.jupiter.api.Test;
 
 class FoodTest {
 
 	@Test
 	void Test() {
-		CreatingMap map = new CreatingMap(new Point(2,0));
+		//еда всегда создаётся только там, где нет змеи
+		Point map = new Point(2,0);
 		Snake snake = new Snake();
-		Food food = Food.createFood(snake, map.size);
-		assertEquals(food.coordinate.x, 2);
-		assertEquals(food.coordinate.y, 0);
+		Food food = Food.createFood(snake, map);
+		assert(Point.equal(food.coordinate, new Point(2,0)));
+		food = Food.createFood(snake, map);
+		assert(Point.equal(food.coordinate, new Point(2,0)));
+		food = Food.createFood(snake, map);
+		assert(Point.equal(food.coordinate, new Point(2,0)));
 	}
 
 }
