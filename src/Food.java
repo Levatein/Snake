@@ -3,7 +3,7 @@ import java.util.Random;
 public class Food {
 
 	public Point coordinate;
-	public static int value = 1;
+	public final int value = 1;
 	
 	private Food(Point coordinate) {
 		//this.value = value;

@@ -3,13 +3,14 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		Point map = new Point(10,10);
+		// TODO написала эту штуку чтобы посмотреть, как и что работает
+		Point map = new Point(5,5);
 		Snake snake = new Snake();
 		Food food = Food.createFood(snake, map);
 		Scanner in = new Scanner(System.in);
 		String[][] matrix = new String[map.x+1][map.y+1];
 		for (int i = 0; i<=map.x; i++) {
-			for (int j = 0; j<=map.x; j++) {
+			for (int j = 0; j<=map.y; j++) {
 				matrix[i][j]=". ";
 			}
 		}
@@ -29,9 +30,9 @@ public class Main {
 		System.out.print(snake.snake.get(0).x);
 		System.out.print(", ");
 		System.out.println(snake.snake.get(0).y);
-		for (int i = 0; i<=map.x; i++) {
-			for (int j = 0; j<=map.y; j++) {
-				System.out.print(matrix[j][map.x-i]);
+		for (int i = 0; i<=map.y; i++) {
+			for (int j = 0; j<=map.x; j++) {
+				System.out.print(matrix[j][map.y-i]);
 			}
 			System.out.print("\n");
 		}
@@ -46,6 +47,7 @@ public class Main {
 			if (directionChar == 's') {	snake.movement(Movement.DOWN);}
 			if (directionChar == 'a') {	snake.movement(Movement.LEFT);}
 			if (directionChar == 'd') {	snake.movement(Movement.RIGHT);}
+			snake.snakeEatItself();
 			if (snake.snakeDie(map)) {
 				System.out.println("Game over");
 				break;
@@ -71,13 +73,12 @@ public class Main {
 			System.out.print(snake.snake.get(0).x);
 			System.out.print(", ");
 			System.out.println(snake.snake.get(0).y);
-			for (int i = 0; i<=map.x; i++) {
-				for (int j = 0; j<=map.y; j++) {
-					System.out.print(matrix[j][map.x-i]);
+			for (int i = 0; i<=map.y; i++) {
+				for (int j = 0; j<=map.x; j++) {
+					System.out.print(matrix[j][map.y-i]);
 				}
 				System.out.print("\n");
 			}
 		}
 	}
-
 }
