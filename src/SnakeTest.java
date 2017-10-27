@@ -31,12 +31,14 @@ class SnakeTest {
 		snake.movement(Movement.LEFT);
 		assert(snake.snakeDie(map));
 		
-		//смерть при столкновении змеи с самой собой
+		//змея ест себя :I
 		snake = new Snake();
 		snake.movement(Movement.RIGHT);
 		snake.eatingFood();
+		snake.eatingFood();
 		snake.movement(Movement.LEFT);
-		assert(snake.snakeDie(map));
+		snake.snakeEatItself();
+		assert(snake.snake.size()==2);
 	}
 
 }

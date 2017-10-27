@@ -3,10 +3,10 @@ import java.util.Random;
 public class Food {
 
 	public Point coordinate;
-	public int value;
+	public static int value = 1;
 	
-	private Food(Point coordinate, int value) {
-		this.value = value;
+	private Food(Point coordinate) {
+		//this.value = value;
 		this.coordinate = coordinate;
 	}
 	
@@ -25,8 +25,7 @@ public class Food {
 			}
 			i++;
 		}
-		int value = random.nextInt(2)+1;
-		return new Food(location, value);
+		return new Food(location);
 		
 	}
 }
