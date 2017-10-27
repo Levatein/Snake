@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO написала эту штуку чтобы посмотреть, как и что работает
-		Point map = new Point(5,5);
+		// TODO Г­Г ГЇГЁГ±Г Г«Г  ГЅГІГі ГёГІГіГЄГі Г·ГІГ®ГЎГ» ГЇГ®Г±Г¬Г®ГІГ°ГҐГІГј, ГЄГ ГЄ ГЁ Г·ГІГ® Г°Г ГЎГ®ГІГ ГҐГІ
+		Point map = new Point(15,10);
 		Snake snake = new Snake();
 		Food food = Food.createFood(snake, map);
 		Scanner in = new Scanner(System.in);
@@ -20,13 +20,13 @@ public class Main {
 		}
 		matrix[food.coordinate.x][food.coordinate.y] = "8 ";
 		int score = 0;
-		System.out.print("очки: ");
+		System.out.print("Г®Г·ГЄГЁ: ");
 		System.out.println(score);
-		System.out.print("где еда: ");
+		System.out.print("ГЈГ¤ГҐ ГҐГ¤Г : ");
 		System.out.print(food.coordinate.x);
 		System.out.print(", ");
 		System.out.println(food.coordinate.y);
-		System.out.print("где голова: ");
+		System.out.print("ГЈГ¤ГҐ ГЈГ®Г«Г®ГўГ : ");
 		System.out.print(snake.snake.get(0).x);
 		System.out.print(", ");
 		System.out.println(snake.snake.get(0).y);
@@ -63,13 +63,13 @@ public class Main {
 			for (int i = 1; i<snake.snake.size(); i++) {
 				matrix[snake.snake.get(i).x][snake.snake.get(i).y]="0 ";
 			}
-			System.out.print("очки: ");
+			System.out.print("Г®Г·ГЄГЁ: ");
 			System.out.println(score);
-			System.out.print("где еда: ");
+			System.out.print("ГЈГ¤ГҐ ГҐГ¤Г : ");
 			System.out.print(food.coordinate.x);
 			System.out.print(", ");
 			System.out.println(food.coordinate.y);
-			System.out.print("где голова: ");
+			System.out.print("ГЈГ¤ГҐ ГЈГ®Г«Г®ГўГ : ");
 			System.out.print(snake.snake.get(0).x);
 			System.out.print(", ");
 			System.out.println(snake.snake.get(0).y);
