@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO написала эту штуку чтобы посмотреть, как и что работает
-		Point map = new Point(5,5);
+		Point map = new Point(15,10);
 		Snake snake = new Snake();
 		Food food = Food.createFood(snake, map);
 		Scanner in = new Scanner(System.in);
