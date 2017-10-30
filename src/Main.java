@@ -13,7 +13,6 @@ public class Main {
 			matrix[game.snake.snake.get(i).x][game.snake.snake.get(i).y]="0 ";
 		}
 		matrix[game.food.coordinate.x][game.food.coordinate.y] = "8 ";
-		game.score = 0;
 		printMatrix(game, matrix);
 		while (true) {
 			for (int i = 0; i<game.snake.snake.size(); i++) {
