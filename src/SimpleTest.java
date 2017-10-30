@@ -9,8 +9,8 @@ class SimpleTest {
 		assert(point.y==0);
 		
 		Snake snake = new Snake();
-		assert(Point.equal(snake.snake.get(0), new Point(1,0)));
-		assert(Point.equal(snake.snake.get(1), new Point(0,0)));
+		assert(snake.snake.get(0).equals(new Point(1,0)));
+		assert(snake.snake.get(1).equals(new Point(0,0)));
 	}
 
 }

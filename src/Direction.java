@@ -1,4 +1,4 @@
-public class Movement {
+public class Direction {
 
 	public final static Point UP = new Point(0, 1);
 	public final static Point DOWN = new Point(0, -1);
