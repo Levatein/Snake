@@ -13,7 +13,6 @@ public class Main {
 			matrix[game.snake.snake.get(i).x][game.snake.snake.get(i).y]="0 ";
 		}
 		matrix[game.food.coordinate.x][game.food.coordinate.y] = "8 ";
-		printMatrix(game, matrix);
 		while (true) {
 			for (int i = 0; i<game.snake.snake.size(); i++) {
 				matrix[game.snake.snake.get(i).x][game.snake.snake.get(i).y]=". ";
@@ -54,7 +53,7 @@ public class Main {
 			for (int j = 0; j<=game.map.x; j++) {
 				System.out.print(matrix[j][game.map.y-i]);
 			}
-			System.out.print("\n");
+				System.out.print("\n");
 		}
 	}
 }
