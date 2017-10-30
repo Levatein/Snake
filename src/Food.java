@@ -1,4 +1,4 @@
-
+import java.util.LinkedList;
 
 public class Food {
 
@@ -9,10 +9,10 @@ public class Food {
 		this.coordinate = coordinate;
 	}
 	
-	public static Food createFood(Snake snake, Point mapSize) {
+	public static Food createFood(Snake snake, Point mapSize, LinkedList<Point> walls) {
 		while(true) {		
 			Point point = Point.random(mapSize);
-			if(!snake.snake.contains(point)) {
+			if(!snake.snake.contains(point)&&!walls.contains(point)) {
 				return new Food(point);
 			}
 		}

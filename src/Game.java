@@ -2,15 +2,16 @@ import java.util.Scanner;
 
 public class Game {
 
+	public Point map = new Point(10, 7);
 	public Snake snake;
 	public Food food;
-	public Point map;
+	public Wall walls;
 	public int score;
 	
 	public Game() {
 		this.snake = new Snake();
-		this.map = new Point(20, 15);
-		this.food = Food.createFood(snake, map);
+		this.walls = new Wall(map);
+		this.food = Food.createFood(snake, map, walls.walls);
 		this.score = 0;
 	}
 	
@@ -22,7 +23,6 @@ public class Game {
 		if (directionChar == 's') {	this.snake.move(Direction.DOWN);}
 		if (directionChar == 'a') {	this.snake.move(Direction.LEFT);}
 		if (directionChar == 'd') {	this.snake.move(Direction.RIGHT);}
-		in.close();
 	}
 	
 	

@@ -13,20 +13,21 @@ public class Main {
 			matrix[game.snake.snake.get(i).x][game.snake.snake.get(i).y]="0 ";
 		}
 		matrix[game.food.coordinate.x][game.food.coordinate.y] = "8 ";
+		printMatrix(game, matrix);
 		while (true) {
 			for (int i = 0; i<game.snake.snake.size(); i++) {
 				matrix[game.snake.snake.get(i).x][game.snake.snake.get(i).y]=". ";
 			}
 			game.moveSnake();
 			game.snake.snakeEatItself();
-			if (game.snake.snakeDie(game.map)) {
+			if (game.snake.snakeDie(game.walls)) {
 				System.out.println("Game over");
 				break;
 				}
 			if (game.snake.snake.getFirst().equals(game.food.coordinate)) {
 				game.score += game.food.value;
 				matrix[game.food.coordinate.x][game.food.coordinate.y] = ". ";
-				game.food = Food.createFood(game.snake, game.map);
+				game.food = Food.createFood(game.snake, game.map, game.walls.walls);
 				matrix[game.food.coordinate.x][game.food.coordinate.y] = "8 ";
 				game.snake.eatingFood();
 			}

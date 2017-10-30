@@ -11,8 +11,7 @@ public class Snake {
 	}
 
 	public void move(Point direction) {
-		this.snake.addFirst(this.snake.getLast());
-		this.snake.set(0, this.snake.get(1).add(direction));
+		this.snake.addFirst(this.snake.getFirst().add(direction));
 		this.snake.removeLast();
 	}
 
@@ -28,14 +27,8 @@ public class Snake {
 		}
 	}
 
-	public boolean snakeDie(Point map) {
-		if (this.snake.get(0).x == map.x + 1 || this.snake.get(0).y == map.y + 1) {
-			return true;
-		}
-		if (this.snake.get(0).x == -1 || this.snake.get(0).y == -1) {
-			return true;
-		}
-		return false;
+	public boolean snakeDie(Wall walls) {
+		return walls.walls.contains(this.snake.getFirst());
 	}
 
 	public void snakeEatItself() {
