@@ -7,11 +7,11 @@ class FoodTest {
 		Point map = new Point(2,0);
 		Wall walls = new Wall(map);
 		Snake snake = new Snake();
-		Food food = Food.createFood(snake, map, walls.walls);
+		Food food = Food.createFood(snake, map, walls);
 		assert(food.coordinate.equals(new Point(2,0)));
-		food = Food.createFood(snake, map, walls.walls);
+		food = Food.createFood(snake, map, walls);
 		assert(food.coordinate.equals(new Point(2,0)));
-		food = Food.createFood(snake, map, walls.walls);
+		food = Food.createFood(snake, map, walls);
 		assert(food.coordinate.equals(new Point(2,0)));
 	}
 

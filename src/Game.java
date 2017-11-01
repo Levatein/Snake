@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Game {
 
-	public Point map = new Point(10, 7);
+	public Point map = new Point(15, 10);
 	public Snake snake;
 	public Food food;
 	public Wall walls;
@@ -11,7 +11,7 @@ public class Game {
 	public Game() {
 		this.snake = new Snake();
 		this.walls = new Wall(map);
-		this.food = Food.createFood(snake, map, walls.walls);
+		this.food = Food.createFood(snake, map, walls);
 		this.score = 0;
 	}
 	
@@ -25,5 +25,13 @@ public class Game {
 		if (directionChar == 'd') {	this.snake.move(Direction.RIGHT);}
 	}
 	
-	
+	public void eatingFood(String[][] matrix, Point lastPoint) {
+		if (this.snake.snake.getFirst().equals(this.food.coordinate)) {
+			this.score += this.food.value;
+			matrix[this.food.coordinate.x][this.food.coordinate.y] = ". ";
+			this.food = Food.createFood(this.snake, this.map, this.walls);
+			matrix[this.food.coordinate.x][this.food.coordinate.y] = "8 ";
+			this.snake.grow(lastPoint);
+		}
+	}
 }

@@ -15,20 +15,14 @@ public class Snake {
 		this.snake.removeLast();
 	}
 
-	public void eatingFood() {
-		int x1 = this.snake.get(this.snake.size() - 1).x;
-		int y1 = this.snake.get(this.snake.size() - 1).y;
-		int x2 = this.snake.get(this.snake.size() - 2).x;
-		int y2 = this.snake.get(this.snake.size() - 2).y;
-		if (x1 == x2) {
-			this.snake.add(new Point(x1, 2 * y1 - y2));
-		} else {
-			this.snake.add(new Point(2 * x1 - x2, y1));
-		}
+	public void grow(Point lastPoint) {
+		this.snake.addLast(lastPoint);
 	}
 
 	public boolean snakeDie(Wall walls) {
-		return walls.walls.contains(this.snake.getFirst());
+		if (walls.borders.contains(this.snake.getFirst()) || walls.walls.contains(this.snake.getFirst())) {
+			return true;}
+		return false;
 	}
 
 	public void snakeEatItself() {
