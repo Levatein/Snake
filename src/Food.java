@@ -10,7 +10,7 @@ public class Food {
 	public static Food createFood(Snake snake, Point mapSize, Wall walls) {
 		while(true) {		
 			Point point = Point.random(mapSize);
-			if(!snake.snake.contains(point)&&!walls.borders.contains(point)&&!walls.walls.contains(snake.snake.getFirst())) {
+			if(!snake.snake.contains(point)&&!walls.borders.contains(point)&&!walls.walls.contains(point)) {
 				return new Food(point);
 			}
 		}

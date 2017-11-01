@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Game {
 
-	public Point map = new Point(15, 10);
+	public Point map = new Point(30, 20);
 	public Snake snake;
 	public Food food;
 	public Wall walls;
