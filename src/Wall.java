@@ -47,26 +47,16 @@ public class Wall {
 		ArrayList<Point> walls2 = new ArrayList<Point>();
 		walls2.addAll(this.walls);
 		for (Point i : walls2) {
-			for (Point j : walls2) {
-				if (i.x - j.x == 2) {
-					this.walls.add(new Point(i.x - 1, i.y));
-				}
-				if (i.x - j.x == -2) {
-					this.walls.add(new Point(i.x + 1, i.y));
-				}
-				if (i.y - j.y == 2) {
-					this.walls.add(new Point(i.x, i.y - 1));
-				}
-				if (i.y - j.y == -2) {
-					this.walls.add(new Point(i.x, i.y + 1));
-				}
-				if (new Point(i.x, i.y).equals(new Point(j.y, j.x)) && Math.abs(i.x - j.x) == 2
-						&& Math.abs(i.y - j.y) == 2) {
-					this.walls.add(new Point(i.x, i.x));
-					this.walls.add(new Point(i.y, i.y));
-				}
-
-			}
+			if (this.walls.contains(new Point(i.x+2, i.y))) {this.walls.add(new Point(i.x+1, i.y));}
+			if (this.walls.contains(new Point(i.x-2, i.y))) {this.walls.add(new Point(i.x-1, i.y));}
+			if (this.walls.contains(new Point(i.x, i.y+2))) {this.walls.add(new Point(i.x, i.y+1));}
+			if (this.walls.contains(new Point(i.x, i.y-2))) {this.walls.add(new Point(i.x, i.y-1));}
+		}
+		for (Point i : walls2) {
+			if (this.walls.contains(new Point(i.x+2, i.y))) {this.walls.add(new Point(i.x+1, i.y));}
+			if (this.walls.contains(new Point(i.x-2, i.y))) {this.walls.add(new Point(i.x-1, i.y));}
+			if (this.walls.contains(new Point(i.x, i.y+2))) {this.walls.add(new Point(i.x, i.y+1));}
+			if (this.walls.contains(new Point(i.x, i.y-2))) {this.walls.add(new Point(i.x, i.y-1));}
 		}
 	}
 }
