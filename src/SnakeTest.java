@@ -21,12 +21,12 @@ class SnakeTest {
 		snake.move(Direction.RIGHT);
 		snake.move(Direction.RIGHT);
 		snake.move(Direction.RIGHT);
-		assert(snake.snakeDie(new Wall(map)));
+		assert(snake.checkSnakeColide(new Wall(map)));
 		
 		snake = new Snake();
 		snake.move(Direction.LEFT);
 		snake.move(Direction.LEFT);
-		assert(snake.snakeDie(new Wall(map)));
+		assert(snake.checkSnakeColide(new Wall(map)));
 	}
 
 }

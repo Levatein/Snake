@@ -1,3 +1,4 @@
+import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
@@ -14,11 +15,16 @@ public class Game {
 		this.food = Food.createFood(snake, extremePoint, walls);
 		this.score = 0;
 	}
-
-	public void moveSnake() {
+	
+	public char readDirection()
+	{
 		Scanner in = new Scanner(System.in);
 		String direction = in.nextLine();
-		char directionChar = direction.charAt(0);
+		return direction.charAt(0);
+	}
+
+	public void moveSnake() {
+		char directionChar = readDirection();
 		if (directionChar == 'w') {
 			this.snake.move(Direction.UP);
 		}
@@ -33,12 +39,12 @@ public class Game {
 		}
 	}
 
-	public void eatingFood(String[][] matrix, Point lastPoint) {
-		if (this.snake.head().equals(this.food.coordinate)) {
+	public void snakeEatingFood(Map<Point, String> blocks, Point lastPoint) {
+		if (this.snake.getHead().equals(this.food.coordinate)) {
 			this.score += this.food.value;
-			matrix[this.food.coordinate.x][this.food.coordinate.y] = ". ";
+			blocks.put(this.food.coordinate, ". ");
 			this.food = Food.createFood(this.snake, this.extremePoint, this.walls);
-			matrix[this.food.coordinate.x][this.food.coordinate.y] = "8 ";
+			blocks.put(this.food.coordinate, "8 ");
 			this.snake.grow(lastPoint);
 		}
 	}

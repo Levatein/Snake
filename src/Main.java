@@ -1,52 +1,55 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Main {
 
 	public static void main(String[] args) {
 		Game game = new Game();
-		String[][] matrix = createMatrix(game);
+		Map<Point, String> blocks = createMap(game);
 		while (true) {
-			printMatrix(game, matrix);
-			for (int i = 0; i < game.snake.snake.size(); i++) {
-				matrix[game.snake.snake.get(i).x][game.snake.snake.get(i).y] = ". ";
+			printMatrix(game, blocks);
+			for (int i = 0; i < game.snake.getLength(); i++) {
+				blocks.put(game.snake.get(i), ". ");
 			}
-			Point lastPoint = game.snake.snake.getLast();
+			Point lastPoint = game.snake.getTail();
 			game.moveSnake();
-			game.snake.snakeEatItself();
-			game.score = game.snake.snake.size();
-			if (game.snake.snakeDie(game.walls)) {
+			game.snake.checkSnakeCrossesItself();
+			game.score = game.snake.getLength();
+			if (game.snake.checkSnakeColide(game.walls)) {
 				System.out.println("Game over");
 				break;
 			}
-			game.eatingFood(matrix, lastPoint);
-			matrix[game.snake.head().x][game.snake.head().y] = "H ";
-			for (int i = 1; i < game.snake.snake.size(); i++) {
-				matrix[game.snake.snake.get(i).x][game.snake.snake.get(i).y] = "0 ";
+			game.snakeEatingFood(blocks, lastPoint);
+			blocks.put(game.snake.getHead(), "H ");
+			for (int i = 1; i < game.snake.getLength(); i++) {
+				blocks.put(game.snake.get(i), "0 ");
 			}
 		}
 	}
 
-	private static String[][] createMatrix(Game game) {
-		String[][] matrix = new String[game.extremePoint.x + 1][game.extremePoint.y + 1];
+	private static Map<Point, String> createMap(Game game) {
+		Map<Point, String> blocks = new HashMap<>();
 		for (int i = 0; i <= game.extremePoint.x; i++) {
 			for (int j = 0; j <= game.extremePoint.y; j++) {
-				matrix[i][j] = ". ";
+				blocks.put(new Point(i, j), ". ");
 			}
 		}
 		for (Point i : game.walls.obstacles) {
 			try {
-				matrix[i.x][i.y] = "X ";
+				blocks.put(i, "X ");
 			} catch (ArrayIndexOutOfBoundsException e) {
 				continue;
 			}
 		}
-		matrix[game.snake.head().x][game.snake.head().y] = "H ";
-		for (int i = 1; i < game.snake.snake.size(); i++) {
-			matrix[game.snake.snake.get(i).x][game.snake.snake.get(i).y] = "0 ";
+		blocks.put(game.snake.getHead(), "H ");
+		for (int i = 1; i < game.snake.getLength(); i++) {
+			blocks.put(game.snake.get(i), "0 ");
 		}
-		matrix[game.food.coordinate.x][game.food.coordinate.y] = "8 ";
-		return matrix;
+		blocks.put(game.food.coordinate, "8 ");
+		return blocks;
 	}
 
-	private static void printMatrix(Game game, String[][] matrix) {
+	private static void printMatrix(Game game, Map<Point, String> blocks) {
 		System.out.print("очки: ");
 		System.out.println(game.score);
 		System.out.print("где еда: ");
@@ -54,12 +57,12 @@ public class Main {
 		System.out.print(", ");
 		System.out.println(game.food.coordinate.y);
 		System.out.print("где голова: ");
-		System.out.print(game.snake.head().x);
+		System.out.print(game.snake.getHead().x);
 		System.out.print(", ");
-		System.out.println(game.snake.head().y);
+		System.out.println(game.snake.getHead().y);
 		for (int i = 0; i <= game.extremePoint.y; i++) {
 			for (int j = 0; j <= game.extremePoint.x; j++) {
-				System.out.print(matrix[j][game.extremePoint.y - i]);
+				System.out.print(blocks.get(new Point(j, game.extremePoint.y - i)));
 			}
 			System.out.print("\n");
 		}
