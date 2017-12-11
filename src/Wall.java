@@ -2,12 +2,22 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class Wall {
+public class Wall implements GameObject {
 
 	public LinkedList<Point> borders;
 	public ArrayList<Point> obstacles;
 	public LinkedList<Point> startPoint;
 
+	public ApplyResult tryApply(Snake s, Point lastPoint) {
+		return new ApplyResult(false, this);
+	}
+	
+	public Wall() {
+		this.borders = new LinkedList<>();
+		this.startPoint = new LinkedList<>();
+		this.obstacles = new ArrayList<>();
+	}
+	
 	public Wall(Point wall) {
 		Random random = new Random();
 		this.borders = new LinkedList<>();

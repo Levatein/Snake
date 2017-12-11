@@ -1,9 +1,13 @@
 import java.util.LinkedList;
 
-public class Snake {
+public class Snake implements GameObject {
 
 	public LinkedList<Point> snake;
 
+	public ApplyResult tryApply(Snake s, Point lastPoint) {
+		return new ApplyResult(false, this);
+	}
+	
 	public Snake() {
 		this.snake = new LinkedList<Point>();
 		this.snake.add(new Point(1, 0));

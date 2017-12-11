@@ -4,26 +4,22 @@ import java.util.Map;
 public class Main {
 
 	public static void main(String[] args) {
+		boolean flag = true;
 		Game game = new Game();
-		Map<Point, String> blocks = createMap(game);
-		while (true) {
+		while (flag) {
+			Map<Point, String> blocks = createMap(game);
+			game.createField();
 			printMatrix(game, blocks);
-			for (int i = 0; i < game.snake.getLength(); i++) {
-				blocks.put(game.snake.get(i), ". ");
-			}
-			Point lastPoint = game.snake.getTail();
 			game.moveSnake();
-			game.snake.checkSnakeCrossesItself();
-			game.score = game.snake.getLength();
-			if (game.snake.checkSnakeColide(game.walls)) {
-				System.out.println("Game over");
+			Point lastPoint = game.snake.getTail();
+			Point newPosition = game.snake.getHead();
+			ApplyResult applyResult = game.field.get(newPosition).tryApply(game.snake, lastPoint);
+			if(!applyResult.isSuccess){
+				System.out.println("Game Over");
 				break;
 			}
-			game.snakeEatingFood(blocks, lastPoint);
-			blocks.put(game.snake.getHead(), "H ");
-			for (int i = 1; i < game.snake.getLength(); i++) {
-				blocks.put(game.snake.get(i), "0 ");
-			}
+			game.field.put(newPosition, applyResult.replacement);
+			game.score = game.snake.getLength();
 		}
 	}
 
@@ -35,11 +31,7 @@ public class Main {
 			}
 		}
 		for (Point i : game.walls.obstacles) {
-			try {
-				blocks.put(i, "X ");
-			} catch (ArrayIndexOutOfBoundsException e) {
-				continue;
-			}
+			blocks.put(i, "X ");
 		}
 		blocks.put(game.snake.getHead(), "H ");
 		for (int i = 1; i < game.snake.getLength(); i++) {
