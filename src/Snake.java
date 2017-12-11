@@ -4,7 +4,7 @@ public class Snake implements GameObject {
 
 	public LinkedList<Point> snake;
 
-	public ApplyResult tryApply(Snake s, Point lastPoint) {
+	public ApplyResult tryApply(Game game) {
 		return new ApplyResult(false, this);
 	}
 	

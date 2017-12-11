@@ -11,9 +11,9 @@ public class Main {
 			game.createField();
 			printMatrix(game, blocks);
 			game.moveSnake();
-			Point lastPoint = game.snake.getTail();
+			game.lastPoint = game.snake.getTail();
 			Point newPosition = game.snake.getHead();
-			ApplyResult applyResult = game.field.get(newPosition).tryApply(game.snake, lastPoint);
+			ApplyResult applyResult = game.field.get(newPosition).tryApply(game);
 			if(!applyResult.isSuccess){
 				System.out.println("Game Over");
 				break;

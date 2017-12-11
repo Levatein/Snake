@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class Game {
 
-	public Point extremePoint = new Point(30, 20);
+	public Point extremePoint = new Point(5, 5); //30, 20
 	public Snake snake;
 	public Food food;
 	public Wall walls;
 	public int score;
-	public Empty empty;
+	public Point lastPoint;
 	Map<Point, GameObject> field;
 
 	public void createField() {
@@ -17,14 +17,14 @@ public class Game {
 		for (int i = 0; i <= this.extremePoint.x; i++) {
 			for (int j = 0; j <= this.extremePoint.y; j++) {
 
-				this.field.put(new Point(i, j), new Food());
+				this.field.put(new Point(i, j), new Empty());
 			}
 		}
 		for (Point i : this.walls.obstacles) {
 			this.field.put(i, walls);
 		}
 		this.field.put(this.snake.getHead(), this.snake);
-		for (int i = 1; i < this.snake.getLength(); i++) {
+		for (int i = 0; i < this.snake.getLength(); i++) {
 			this.field.put(this.snake.get(i), this.snake);
 		}
 		this.field.put(this.food.coordinate, this.food);
@@ -32,8 +32,8 @@ public class Game {
 	
 	public Game() {
 		this.snake = new Snake();
-		this.walls = new Wall(extremePoint);
-		this.empty = new Empty();
+		this.walls = new Wall();
+		this.walls.createWall(extremePoint);
 		this.food = Food.createFood(snake, extremePoint, walls);
 		this.score = 0;
 	}
@@ -58,16 +58,6 @@ public class Game {
 		}
 		if (directionChar == 'd') {
 			this.snake.move(Direction.RIGHT);
-		}
-	}
-	
-	public void snakeEatingFood(Map<Point, String> blocks, Point lastPoint) {
-		if (this.snake.getHead().equals(this.food.coordinate)) {
-			this.score += this.food.value;
-			blocks.put(this.food.coordinate, ". ");
-			this.food = Food.createFood(this.snake, this.extremePoint, this.walls);
-			blocks.put(this.food.coordinate, "8 ");
-			this.food.tryApply(snake, lastPoint);
 		}
 	}
 }

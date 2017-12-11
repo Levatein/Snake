@@ -3,8 +3,9 @@ public class Food implements GameObject {
 	public Point coordinate;
 	public final int value = 1;
 
-	public ApplyResult tryApply(Snake snake, Point lastPoint){
-		snake.grow(lastPoint);
+	public ApplyResult tryApply(Game game){
+		game.snake.grow(game.lastPoint);
+		game.food = Food.createFood(game.snake, game.extremePoint, game.walls);
 		return new ApplyResult(true, new Empty());
 	}
 	
@@ -13,7 +14,6 @@ public class Food implements GameObject {
 	}
 	
 	public Food() {
-		this.coordinate = Point.ZERO;
 	}
 
 	public static Food createFood(Snake snake, Point mapSize, Wall walls) {

@@ -8,17 +8,14 @@ public class Wall implements GameObject {
 	public ArrayList<Point> obstacles;
 	public LinkedList<Point> startPoint;
 
-	public ApplyResult tryApply(Snake s, Point lastPoint) {
+	public ApplyResult tryApply(Game game) {
 		return new ApplyResult(false, this);
 	}
 	
 	public Wall() {
-		this.borders = new LinkedList<>();
-		this.startPoint = new LinkedList<>();
-		this.obstacles = new ArrayList<>();
 	}
 	
-	public Wall(Point wall) {
+	public void createWall(Point wall) {
 		Random random = new Random();
 		this.borders = new LinkedList<>();
 		this.startPoint = new LinkedList<>();
